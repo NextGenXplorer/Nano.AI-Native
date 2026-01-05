@@ -27,7 +27,7 @@ fun IntroScreen() {
             .background(MaterialTheme.colorScheme.background)
     ) {
         Text(
-            text = "Tool-Neuron", style = MaterialTheme.typography.headlineMedium.copy(
+            text = "Nano.ai", style = MaterialTheme.typography.headlineMedium.copy(
                 fontFamily = FontFamily.Serif,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,

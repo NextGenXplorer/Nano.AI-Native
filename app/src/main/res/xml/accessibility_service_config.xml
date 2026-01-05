@@ -5,4 +5,4 @@
     android:canRequestFilterKeyEvents="true"
     android:isAccessibilityTool="true"
     android:notificationTimeout="100"
-    android:settingsActivity="tool_neuron.SettingsActivity" />
+    android:settingsActivity="com.nano.ai.SettingsActivity" />

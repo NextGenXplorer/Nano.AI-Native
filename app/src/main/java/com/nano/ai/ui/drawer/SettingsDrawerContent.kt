@@ -100,7 +100,7 @@ fun SettingsDrawerContent(
             modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Tool-Neuron", style = MaterialTheme.typography.headlineMedium.copy(
+                text = "Nano.ai", style = MaterialTheme.typography.headlineMedium.copy(
                     fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.Bold,
                     color = colorScheme.primary
