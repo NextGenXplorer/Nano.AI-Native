@@ -1210,7 +1210,7 @@ fun EmptyStateContent(uiState: ChatUiState) {
 
             else -> {
                 Text(
-                    text = "Ready to chat! Ask me anything. 😊 \nToolNeuron",
+                    text = "Ready to chat! Ask me anything. 😊 \\nNano.ai",
                     color = SlateGrey,
                     fontSize = rSp(16.sp),
                     fontFamily = FontFamily.Serif,
