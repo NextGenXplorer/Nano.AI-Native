@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 nano.ai
+# 🧠 Nano.AI
 
 ### Your Complete Offline AI Companion for Android
 
