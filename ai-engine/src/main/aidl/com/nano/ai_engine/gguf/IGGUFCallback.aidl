@@ -1,4 +1,4 @@
-package com.mp.ai_engine.gguf;
+package com.nano.ai_engine.gguf;
 
 /**
  * Callback interface for GGUF text generation

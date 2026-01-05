@@ -1,6 +1,6 @@
-package com.mp.ai_engine.installer;
+package com.nano.ai_engine.installer;
 
-import com.mp.ai_engine.installer.IInstallerCallback;
+import com.nano.ai_engine.installer.IInstallerCallback;
 
 /**
  * Model installation and management operations

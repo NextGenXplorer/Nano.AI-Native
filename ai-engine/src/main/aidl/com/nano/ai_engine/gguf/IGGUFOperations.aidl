@@ -1,6 +1,6 @@
-package com.mp.ai_engine.gguf;
+package com.nano.ai_engine.gguf;
 
-import com.mp.ai_engine.gguf.IGGUFCallback;
+import com.nano.ai_engine.gguf.IGGUFCallback;
 
 /**
  * GGUF model operations for local LLM inference

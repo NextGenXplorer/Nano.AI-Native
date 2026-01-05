@@ -1,4 +1,4 @@
-package com.mp.ai_engine.openrouter;
+package com.nano.ai_engine.openrouter;
 
 /**
  * Callback interface for OpenRouter text generation

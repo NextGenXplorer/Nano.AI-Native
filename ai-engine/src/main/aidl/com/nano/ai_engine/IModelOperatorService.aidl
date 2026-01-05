@@ -1,9 +1,9 @@
-package com.mp.ai_engine;
+package com.nano.ai_engine;
 
-import com.mp.ai_engine.gguf.IGGUFOperations;
-import com.mp.ai_engine.openrouter.IOpenRouterOperations;
-import com.mp.ai_engine.diffusion.IDiffusionOperations;
-import com.mp.ai_engine.installer.IModelInstaller;
+import com.nano.ai_engine.gguf.IGGUFOperations;
+import com.nano.ai_engine.openrouter.IOpenRouterOperations;
+import com.nano.ai_engine.diffusion.IDiffusionOperations;
+import com.nano.ai_engine.installer.IModelInstaller;
 
 /**
  * Main service interface for AI model operations

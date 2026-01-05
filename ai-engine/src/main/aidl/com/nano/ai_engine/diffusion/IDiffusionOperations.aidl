@@ -1,6 +1,6 @@
-package com.mp.ai_engine.diffusion;
+package com.nano.ai_engine.diffusion;
 
-import com.mp.ai_engine.diffusion.IDiffusionCallback;
+import com.nano.ai_engine.diffusion.IDiffusionCallback;
 
 /**
  * Diffusion model operations for image generation

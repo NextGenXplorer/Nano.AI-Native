@@ -1,6 +1,6 @@
-package com.mp.ai_engine.openrouter;
+package com.nano.ai_engine.openrouter;
 
-import com.mp.ai_engine.openrouter.IOpenRouterCallback;
+import com.nano.ai_engine.openrouter.IOpenRouterCallback;
 
 /**
  * OpenRouter operations for cloud-based LLM inference

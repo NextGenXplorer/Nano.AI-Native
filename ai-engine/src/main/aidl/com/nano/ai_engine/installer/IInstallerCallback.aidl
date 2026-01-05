@@ -1,4 +1,4 @@
-package com.mp.ai_engine.installer;
+package com.nano.ai_engine.installer;
 
 /**
  * Callback interface for model installation operations

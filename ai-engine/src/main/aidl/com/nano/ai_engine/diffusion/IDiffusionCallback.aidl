@@ -1,4 +1,4 @@
-package com.mp.ai_engine.diffusion;
+package com.nano.ai_engine.diffusion;
 
 import android.graphics.Bitmap;
 
