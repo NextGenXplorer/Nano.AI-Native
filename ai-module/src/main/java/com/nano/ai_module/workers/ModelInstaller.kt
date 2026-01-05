@@ -93,7 +93,7 @@ object ModelInstallationManager {
                 requestMethod = "GET"
                 connectTimeout = 30000
                 readTimeout = 30000
-                setRequestProperty("User-Agent", "ToolNeuron/1.0")
+                setRequestProperty("User-Agent", "Nano.ai/1.0")
             }
 
             connection.connect()

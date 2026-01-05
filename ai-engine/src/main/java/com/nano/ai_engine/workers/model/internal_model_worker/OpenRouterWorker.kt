@@ -45,7 +45,7 @@ class OpenRouterWorker :
                 .post(requestBody.toRequestBody("application/json".toMediaType()))
                 .addHeader("Authorization", "Bearer $apiKey")
                 .addHeader("HTTP-Referer", "https://github.com/NextGenXplorer/Nano.AI-Native")
-                .addHeader("X-Title", "ToolNeuron").build()
+                .addHeader("X-Title", "Nano.ai").build()
 
             val response = client.newCall(request).execute()
 

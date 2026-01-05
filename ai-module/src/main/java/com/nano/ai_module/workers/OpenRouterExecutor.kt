@@ -52,7 +52,7 @@ class OpenRouterExecutor(
                 setRequestProperty("Authorization", "Bearer $apiKey")
                 setRequestProperty("Content-Type", "application/json")
                 setRequestProperty("HTTP-Referer", "https://github.com/NextGenXplorer/Nano.AI-Native")
-                setRequestProperty("X-Title", "ToolNeuron")
+                setRequestProperty("X-Title", "Nano.ai")
                 connectTimeout = CONNECT_TIMEOUT
                 readTimeout = READ_TIMEOUT
                 doOutput = true
