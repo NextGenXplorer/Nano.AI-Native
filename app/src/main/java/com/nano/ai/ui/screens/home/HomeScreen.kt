@@ -229,7 +229,7 @@ private fun TopBarSection(
     chatScreenViewModel: ChatScreenViewModel,
     onMenu: () -> Unit,
     onLeftMenu: () -> Unit,
-    modelState: com.dark.ai_module.model.LoadState,
+    modelState: com.nano.ai_module.model.LoadState,
     ttsViewModel: TTSViewModel,
     uiState: ChatUiState,
     tokenRateState: TokenRateState,
