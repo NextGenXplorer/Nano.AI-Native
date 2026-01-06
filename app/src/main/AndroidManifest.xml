@@ -179,9 +179,14 @@
                 android:value="true" />
         </service>
 
-        <!-- AI Core Generation Service for LLM inference -->
+        <!-- AI Core Services for LLM inference and audio processing -->
         <service
             android:name="com.mp.ai_core.services.GenerationService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name="com.mp.ai_core.services.AudioService"
             android:enabled="true"
             android:exported="false" />
 
