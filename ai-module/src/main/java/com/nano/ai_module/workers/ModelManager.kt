@@ -14,9 +14,9 @@ import com.nano.ai_module.model.GenerationParams
 import com.nano.ai_module.model.LoadState
 import com.nano.ai_module.model.ModelData
 import com.nano.ai_module.model.ModelType
+import com.mp.ai_core.services.GenerationService
 import com.mp.ai_core.services.IGenerationCallback
 import com.mp.ai_core.services.IGenerationService
-import com.nano.ai_module.services.NanoGenerationService
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +107,7 @@ object ModelManager {
 
     private fun bindService(context: Context) {
         context.bindService(
-            Intent(context, NanoGenerationService::class.java),
+            Intent(context, GenerationService::class.java),
             serviceConnection,
             Context.BIND_AUTO_CREATE
         )
