@@ -1,4 +1,4 @@
--keep class com.mp.data_hub_lib.model.** { *; }
+-keep class com.nano.ai.datahub.model.** { *; }
 
 -keep class * extends java.lang.Exception
 -keep class * extends java.lang.Throwable

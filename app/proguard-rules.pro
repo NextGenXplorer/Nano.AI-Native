@@ -1,9 +1,9 @@
-# -- Keep all NeuroVerse model classes and their full members --
--keep class com.dark.tool_neuron.model.** { *; }
--keep class com.dark.tool_neuron.activity.** { *; }
--keep class com.dark.tool_neuron.viewModel.** { *; }
--keep class com.dark.tool_neuron.ui.** { *; }
--keep class com.dark.plugins.api.** { *; }
+# -- Keep all Nano.Ai model classes and their full members --
+-keep class com.nano.ai.model.** { *; }
+-keep class com.nano.ai.activity.** { *; }
+-keep class com.nano.ai.viewModel.** { *; }
+-keep class com.nano.ai.ui.** { *; }
+-keep class com.nano.ai.plugins.api.** { *; }
 
 # Keep Composable functions
 -keepclassmembers class ** {
@@ -14,7 +14,7 @@
 -keep @androidx.annotation.Keep class * { *; }
 
 # Keep AI module classes
--keep class com.dark.ai_module.model.** { *; }
+-keep class com.nano.ai.module.model.** { *; }
 
 # Keep AI core classes (from AAR)
 -keep class com.mp.ai_core.audio.stt.** { *; }
