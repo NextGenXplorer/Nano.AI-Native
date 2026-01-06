@@ -23,7 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import com.nano.ai_engine.diffusion.IDiffusionCallback
 import com.nano.ai_engine.gguf.IGGUFCallback
 import com.nano.ai_engine.models.image_models.DiffusionDatabaseModel
@@ -47,7 +47,7 @@ class ScrapActivity : ComponentActivity() {
         ModelInstaller.initialize(this)
 
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 MainScreen()
             }
         }

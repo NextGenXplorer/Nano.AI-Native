@@ -29,7 +29,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NeuroVerse"
+rootProject.name = "NanoAI"
 include(":app")
 include(":ai-module")
 include(":plugins")

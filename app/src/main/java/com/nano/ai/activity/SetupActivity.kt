@@ -104,7 +104,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.nano.ai_module.workers.ModelManager
 import com.nano.ai.R
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import com.nano.ai.viewModel.setupScreen.DownloadStatus
 import com.nano.ai.viewModel.setupScreen.ModelDownloadState
 import com.nano.ai.viewModel.setupScreen.SetupViewModel
@@ -124,7 +124,7 @@ class SetupActivity : ComponentActivity() {
         ModelManager.init(applicationContext)
 
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 val state by viewModel.state.collectAsState()
                 var showDownloadScreen by remember { mutableStateOf(false) }
                 var showRestartDialog by remember { mutableStateOf(false) }

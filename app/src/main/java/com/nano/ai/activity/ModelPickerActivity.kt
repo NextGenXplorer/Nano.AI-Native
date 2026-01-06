@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.nano.ai.ui.screens.picker.ModelPickerScreen
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 
 class GgufPickerActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.S)
@@ -19,7 +19,7 @@ class GgufPickerActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 Surface(Modifier.fillMaxSize()) {
                     ModelPickerScreen(finishWithPath = { absPath ->
                         startActivity(

@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.nano.ai.ui.screens.hub.DataHubScreen
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import com.nano.ai.ui.theme.rDP
 
 class DatahubActivity : ComponentActivity() {
@@ -33,7 +33,7 @@ class DatahubActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 Scaffold(
                     topBar = {
                         TopAppBar(

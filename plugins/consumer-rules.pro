@@ -1,2 +1,2 @@
--keep class com.dark.plugins.api.** { *; }
--keep class com.dark.plugins.model.** { *; }
+-keep class com.nano.plugins.api.** { *; }
+-keep class com.nano.plugins.model.** { *; }

@@ -30,7 +30,7 @@ import com.nano.ai.ui.screens.IntroScreen
 import com.nano.ai.ui.screens.ModelsScreen
 import com.nano.ai.ui.screens.SettingsScreen
 import com.nano.ai.ui.screens.home.HomeScreen
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import com.nano.ai.userdata.getDefaultBrainStructure
 import com.nano.ai.userdata.migrateBrainStructure
 import com.nano.ai.userdata.ntds.getBrainFilePath
@@ -119,7 +119,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            NeuroVerseTheme {
+            NanoAITheme {
                 if (initializationComplete) {
                     NavHost(
                         navController = navController, startDestination = startDestination

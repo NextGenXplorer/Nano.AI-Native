@@ -1,6 +1,6 @@
--keep class com.dark.ai_module.model.** { *; }
--keep class com.dark.ai_module.workers.** { *; }
--keep class com.dark.ai_module.helpers.** { *; }
+-keep class com.nano.ai_module.model.** { *; }
+-keep class com.nano.ai_module.workers.** { *; }
+-keep class com.nano.ai_module.helpers.** { *; }
 
 -keep class * extends java.lang.Exception
 -keep class * extends java.lang.Throwable

@@ -26,7 +26,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.nano.ai_module.model.ModelData
 import com.nano.ai_module.workers.ModelManager
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import kotlinx.coroutines.launch
 
 class TempActivity : ComponentActivity() {
@@ -34,7 +34,7 @@ class TempActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 val modelName = intent?.getStringExtra("modelName") ?: "defaultModel"
                 var model by remember { mutableStateOf(ModelData()) }
                 val coroutineScope = rememberCoroutineScope()

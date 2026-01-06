@@ -68,7 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.nano.ai_module.model.ModelData
 import com.nano.ai_module.workers.ModelManager
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import com.nano.ai.ui.theme.rDP
 import com.nano.ai_engine.models.llm_models.ModelProvider
 import kotlinx.coroutines.launch
@@ -79,7 +79,7 @@ class ModelPropEditorActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         enableEdgeToEdge()
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 ChatSettingsScreen(
                     modelName = intent?.getStringExtra("modelName") ?: "defaultModel"
                 )

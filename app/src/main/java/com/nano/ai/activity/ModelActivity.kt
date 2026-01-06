@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.nano.ai.ui.screens.ModelsScreen
 import com.nano.ai.ui.screens.modelScreen.GGUFModelScreen
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 
 class ModelActivity : ComponentActivity() {
 
@@ -22,7 +22,7 @@ class ModelActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 //ModelsScreen {  }
                 Screen()
             }

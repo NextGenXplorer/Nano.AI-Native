@@ -26,7 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nano.ai_module.model.LoadState
 import com.nano.ai_module.model.ModelData
 import com.nano.ai_module.workers.ModelManager
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 import com.nano.ai.viewModel.ModelScreenViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ class ModelLoadingActivity : ComponentActivity() {
         enableEdgeToEdge()
         val passedPath = intent.getStringExtra(EXTRA_RESULT_FILE_PATH)
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 ModelLoadingScreen(incomingPath = passedPath)
             }
         }

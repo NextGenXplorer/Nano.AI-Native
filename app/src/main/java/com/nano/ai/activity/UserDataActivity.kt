@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowCompat
 import com.nano.ai.ui.screens.UserDataViewerScreen
-import com.nano.ai.ui.theme.NeuroVerseTheme
+import com.nano.ai.ui.theme.NanoAITheme
 
 class UserDataActivity : ComponentActivity() {
 
@@ -16,7 +16,7 @@ class UserDataActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            NeuroVerseTheme {
+            NanoAITheme {
                 UserDataViewerScreen()
             }
         }

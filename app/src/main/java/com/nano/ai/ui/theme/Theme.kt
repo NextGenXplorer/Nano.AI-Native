@@ -93,7 +93,7 @@ fun rSp(
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun NeuroVerseTheme(
+fun NanoAITheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
