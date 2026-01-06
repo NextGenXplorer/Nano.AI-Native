@@ -30,11 +30,18 @@ jobs:
           cp app/google-services.json.example app/google-services.json
         fi
 
+    - name: Create local.properties
+      run: |
+        echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+        echo "ALIAS=\"NanoAI\"" >> local.properties
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --no-daemon --stacktrace
+      run: ./gradlew assembleDebug --no-daemon --stacktrace --info
+      env:
+        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
