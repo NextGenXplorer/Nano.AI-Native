@@ -4,15 +4,18 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nano.ai.data.ModelDataProvider
+import com.nano.ai.util.syncGGUFModelsToAppDatabase
 import com.nano.ai_engine.models.llm_models.CloudModel
 import com.nano.ai_engine.models.llm_models.GGUFDatabaseModel
 import com.nano.ai_engine.workers.DownloadState
 import com.nano.ai_engine.workers.DownloadsState
 import com.nano.ai_engine.workers.installer.ModelInstaller
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -43,6 +46,28 @@ class OnlineModelStoreViewModel : ViewModel() {
     init {
         loadInstalledModels()
         loadAvailableModels()
+        observeDownloadCompletion()
+    }
+
+    /**
+     * Observe download state changes and refresh when downloads complete
+     */
+    private fun observeDownloadCompletion() {
+        viewModelScope.launch {
+            downloadsState.collectLatest { state ->
+                // Check if any downloads just completed
+                val hasCompleted = state.downloads.values.any { it is DownloadState.Completed }
+                if (hasCompleted) {
+                    Log.d(TAG, "Download completed, syncing databases and refreshing...")
+                    // Small delay to ensure database writes are complete
+                    delay(500)
+                    // Sync GGUF models to app's local database
+                    syncGGUFModelsToAppDatabase()
+                    // Refresh the installed models list
+                    loadInstalledModels()
+                }
+            }
+        }
     }
 
     // ==================== Data Loading ====================

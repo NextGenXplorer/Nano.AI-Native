@@ -20,6 +20,7 @@ import com.nano.ai.worker.TextGenerationWorker
 import com.nano.ai.worker.ToolCallingManager
 import com.nano.ai.worker.UIStateManager
 import com.nano.ai.worker.UserDataManager
+import com.nano.ai.util.syncGGUFModelsToAppDatabase
 import com.nano.plugins.model.Tools
 import com.nano.data_hub_lib.model.RagResult
 import kotlinx.coroutines.Job
@@ -119,7 +120,15 @@ class ChatScreenViewModel(private val appContext: Context) : ViewModel() {
     }
 
     suspend fun refreshModelList() {
+        // First sync GGUF models from ai-engine DB to app DB
+        try {
+            syncGGUFModelsToAppDatabase()
+        } catch (e: Exception) {
+            Log.w(TAG, "Failed to sync GGUF models: ${e.message}")
+        }
+        // Then load all models
         modelList.value = ModelManager.getAllModels()
+        Log.d(TAG, "Model list refreshed: ${modelList.value.size} models")
     }
     //endregion
 

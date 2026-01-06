@@ -166,3 +166,41 @@ fun ModelData.getFormattedSize(): String? {
 
 // Required companion object for fromJson extension
 fun ModelData.create() = ModelData()
+
+/**
+ * Creates ModelData from JSON string for deserialization.
+ */
+fun ModelData.Companion.fromJson(jsonString: String): ModelData {
+    val json = JSONObject(jsonString)
+    return ModelData(
+        id = json.optString("id", java.util.UUID.randomUUID().toString()),
+        modelName = json.optString("modelName", ""),
+        providerName = json.optString("providerName", ""),
+        modelType = try { ModelType.valueOf(json.optString("modelType", "TEXT")) } catch (e: Exception) { ModelType.TEXT },
+        modelPath = json.optString("modelPath", ""),
+        architecture = json.optString("architecture", ""),
+        threads = json.optInt("threads", (Runtime.getRuntime().availableProcessors().coerceAtLeast(2)) / 2),
+        gpuLayers = json.optInt("gpuLayers", 0),
+        useMMAP = json.optBoolean("useMMAP", true),
+        useMLOCK = json.optBoolean("useMLOCK", false),
+        ctxSize = json.optInt("ctxSize", 4096),
+        temp = json.optDouble("temp", 0.7).toFloat(),
+        topK = json.optInt("topK", 20),
+        topP = json.optDouble("topP", 0.5).toFloat(),
+        minP = json.optDouble("minP", 0.0).toFloat(),
+        maxTokens = json.optInt("maxTokens", 2048),
+        mirostat = json.optInt("mirostat", 1),
+        mirostatTau = json.optDouble("mirostatTau", 5.0).toFloat(),
+        mirostatEta = json.optDouble("mirostatEta", 0.1).toFloat(),
+        seed = json.optInt("seed", -1),
+        isImported = json.optBoolean("isImported", false),
+        modelUrl = json.optString("modelUrl", null),
+        isToolCalling = json.optBoolean("isToolCalling", false),
+        systemPrompt = json.optString("systemPrompt", "You are a helpful assistant."),
+        chatTemplate = json.optString("chatTemplate", null)
+    )
+}
+
+// Companion object for ModelData
+val ModelData.Companion: ModelDataCompanion get() = ModelDataCompanion
+object ModelDataCompanion

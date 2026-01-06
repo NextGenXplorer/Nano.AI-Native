@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nano.ai_module.workers.downloadFile
 import com.nano.ai.BuildConfig
+import com.nano.ai.data.DataPackProvider
 import com.nano.ai.model.DataPack
 import com.nano.ai.worker.DataHubManager
 import kotlinx.coroutines.cancel
@@ -27,10 +28,36 @@ class DataPackScreenViewModel : ViewModel() {
     val packs = _packs.asStateFlow()
 
     fun loadDataPacks() {
-        Log.d("DataPackScreenViewModel", "${DataHubManager.installedDataSets.value}")
+        Log.d("DataPackScreenViewModel", "Installed datasets: ${DataHubManager.installedDataSets.value}")
 
         viewModelScope.launch {
+            try {
+                // Get available data packs from provider
+                val availablePacks = DataPackProvider.getDataPacks()
 
+                // Get installed datasets to check installation status
+                val installedDataSets = DataHubManager.installedDataSets.value
+
+                // Map to UI state with installation status
+                val packStates = availablePacks.map { dataPack ->
+                    val isInstalled = installedDataSets.any {
+                        it.modelName == dataPack.name ||
+                        it.modelName == dataPack.name.replace(" ", "-")
+                    }
+                    DataPackUiState(
+                        dataPack = dataPack,
+                        progress = if (isInstalled) 1f else 0f,
+                        isDownloading = false,
+                        isInstalled = isInstalled
+                    )
+                }
+
+                _packs.value = packStates
+                Log.d("DataPackScreenViewModel", "Loaded ${packStates.size} data packs, ${packStates.count { it.isInstalled }} installed")
+            } catch (e: Exception) {
+                Log.e("DataPackScreenViewModel", "Error loading data packs", e)
+                _packs.value = emptyList()
+            }
         }
     }
 
