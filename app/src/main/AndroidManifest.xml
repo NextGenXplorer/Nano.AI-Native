@@ -183,8 +183,7 @@
         <service
             android:name="com.mp.ai_core.services.GenerationService"
             android:enabled="true"
-            android:exported="false"
-            android:process=":generation" />
+            android:exported="false" />
 
     </application>
 
