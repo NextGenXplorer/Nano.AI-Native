@@ -164,17 +164,25 @@ class ChatScreenViewModel(private val appContext: Context) : ViewModel() {
                     modelData = model.copy(systemPrompt = systemPrompt)
                 ) { state ->
                     _modelLoadingState.value = state
-                    if (state is LoadState.OnLoaded) {
-                        selectedModel.value = model
-                        Log.d(TAG, "Model loaded: ${model.modelName}")
+                    when (state) {
+                        is LoadState.OnLoaded -> {
+                            selectedModel.value = model
+                            UIStateManager.toggleStateModelLoading(false)
+                            Log.d(TAG, "Model loaded: ${model.modelName}")
+                        }
+                        is LoadState.Error -> {
+                            UIStateManager.toggleStateModelLoading(false)
+                            UIStateManager.setStateError("Model load failed: ${state.message}")
+                            Log.e(TAG, "Model load failed: ${state.message}")
+                        }
+                        else -> { /* Loading in progress */ }
                     }
                 }
 
             } catch (e: Exception) {
                 Log.e(TAG, "Model selection failed", e)
-                UIStateManager.setStateError("Model selection failed", cause = e)
-            } finally {
                 UIStateManager.toggleStateModelLoading(false)
+                UIStateManager.setStateError("Model selection failed", cause = e)
             }
         }
     }
