@@ -179,6 +179,13 @@
                 android:value="true" />
         </service>
 
+        <!-- AI Core Generation Service for LLM inference -->
+        <service
+            android:name="com.nano.ai_module.services.NanoGenerationService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":generation" />
+
     </application>
 
 </manifest>
