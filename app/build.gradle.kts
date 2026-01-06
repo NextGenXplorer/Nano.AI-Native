@@ -21,8 +21,8 @@ android {
         applicationId = "com.nano.ai"
         minSdk = 31
         targetSdk = 36
-        versionCode = 5
-        versionName = "5.0-beta"
+        versionCode = 1
+        versionName = "0.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "ALIAS", getProperty("ALIAS"))

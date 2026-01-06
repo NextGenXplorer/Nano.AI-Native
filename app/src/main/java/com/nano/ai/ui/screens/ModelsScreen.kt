@@ -1210,7 +1210,7 @@ private fun getSTTModelList(context: Context): List<ModelData> {
             providerName = ModelProvider.LocalGGUF.toString(),
             modelType = ModelType.STT,
             modelPath = modelsDir.absolutePath,
-            modelUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/sherpa-onnx-whisper-tiny.zip",
+            modelUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/sherpa-onnx-whisper-tiny.zip",
             ctxSize = 448,
             isImported = false
         )
@@ -1227,7 +1227,7 @@ private fun getTTSModelList(context: Context): List<ModelData> {
             providerName = ModelProvider.LocalGGUF.toString(),
             modelType = ModelType.TTS,
             modelPath = modelsDir.absolutePath,
-            modelUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/kokoro-en-v0_19.zip",
+            modelUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/kokoro-en-v0_19.zip",
             ctxSize = 512,
             isImported = false
         )

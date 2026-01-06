@@ -92,7 +92,7 @@ class SetupViewModel(
                     ), ModelDownloadState(
                         name = "Whisper-EN-Small",
                         description = "A STT Model With 90% Accuracy",
-                        downloadUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/sherpa-onnx-whisper-tiny.zip",
+                        downloadUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/sherpa-onnx-whisper-tiny.zip",
                         fileName = "whisper-en-smallzip",
                         modelType = ModelType.STT
                     )
@@ -111,7 +111,7 @@ class SetupViewModel(
                     ), ModelDownloadState(
                         name = "KOR0-TTS-0.19-M",
                         description = "Quick To Reply, But Less Accurate",
-                        downloadUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/kokoro-en-v0_19.zip",
+                        downloadUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/kokoro-en-v0_19.zip",
                         fileName = "kor0-tts-0.19-mzip",
                         modelType = ModelType.TTS
                     )
@@ -130,13 +130,13 @@ class SetupViewModel(
                     ), ModelDownloadState(
                         name = "Whisper-EN-Small",
                         description = "A STT Model With 90% Accuracy",
-                        downloadUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/sherpa-onnx-whisper-tiny.zip",
+                        downloadUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/sherpa-onnx-whisper-tiny.zip",
                         fileName = "whisper-en-smallzip",
                         modelType = ModelType.STT
                     ), ModelDownloadState(
                         name = "KOR0-TTS-0.19-M",
                         description = "Quick To Reply, But Less Accurate",
-                        downloadUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/kokoro-en-v0_19.zip",
+                        downloadUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/kokoro-en-v0_19.zip",
                         fileName = "kor0-tts-0.19-mzip",
                         modelType = ModelType.TTS
                     )
@@ -149,13 +149,13 @@ class SetupViewModel(
                     ModelDownloadState(
                         name = "Whisper-EN-Small",
                         description = "A STT Model With 90% Accuracy",
-                        downloadUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/sherpa-onnx-whisper-tiny.zip",
+                        downloadUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/sherpa-onnx-whisper-tiny.zip",
                         fileName = "whisper-en-smallzip",
                         modelType = ModelType.STT
                     ), ModelDownloadState(
                         name = "KOR0-TTS-0.19-M",
                         description = "Quick To Reply, But Less Accurate",
-                        downloadUrl = "https://github.com/Siddhesh2377/Nano.Ai/releases/download/Beta-4.5/kokoro-en-v0_19.zip",
+                        downloadUrl = "https://github.com/NextGenXplorer/Nano.AI-Native/releases/download/v0.0.1/kokoro-en-v0_19.zip",
                         fileName = "kor0-tts-0.19-mzip",
                         modelType = ModelType.TTS
                     )
