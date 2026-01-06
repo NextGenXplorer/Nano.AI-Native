@@ -160,15 +160,29 @@ object ModelManager {
     suspend fun loadGenerationModel(
         modelData: ModelData, onLoaded: (LoadState) -> Unit
     ): Result<Unit> = withContext(Dispatchers.IO) {
+        Log.d(TAG, "loadGenerationModel: provider=${modelData.providerName}, path=${modelData.modelPath}")
         return@withContext when (modelData.providerName) {
             "OPEN_ROUTER", "OpenRouter" -> loadOpenRouterModel(modelData, onLoaded)
-            "GGUF", "LocalGGUF" -> loadGGUFModel(modelData, onLoaded)
+            "GGUF", "LocalGGUF", "" -> {
+                // Handle GGUF models (including empty provider for legacy data)
+                if (modelData.modelPath.isNotEmpty()) {
+                    loadGGUFModel(modelData, onLoaded)
+                } else {
+                    val err = "Model path is empty"
+                    Log.e(TAG, err)
+                    onLoaded(LoadState.Error(err))
+                    Result.failure(IllegalArgumentException(err))
+                }
+            }
             else -> {
                 // Default to GGUF if model path exists
                 if (modelData.modelPath.isNotEmpty()) {
                     loadGGUFModel(modelData, onLoaded)
                 } else {
-                    Result.failure(IllegalArgumentException("Unknown provider: ${modelData.providerName}"))
+                    val err = "Unknown provider: ${modelData.providerName}"
+                    Log.e(TAG, err)
+                    onLoaded(LoadState.Error(err))
+                    Result.failure(IllegalArgumentException(err))
                 }
             }
         }
