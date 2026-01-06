@@ -10,9 +10,7 @@ plugins {
 
 android {
     namespace = "com.nano.ai.plugin.api"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 30
