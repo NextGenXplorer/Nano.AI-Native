@@ -48,7 +48,9 @@ data class ModelData(
     // Prompt configuration
     var systemPrompt: String = "You are a helpful assistant.",
     var chatTemplate: String? = null
-)
+) {
+    companion object
+}
 
 
 @Serializable
@@ -164,9 +166,6 @@ fun ModelData.getFormattedSize(): String? {
     }
 }
 
-// Required companion object for fromJson extension
-fun ModelData.create() = ModelData()
-
 /**
  * Creates ModelData from JSON string for deserialization.
  */
@@ -200,7 +199,3 @@ fun ModelData.Companion.fromJson(jsonString: String): ModelData {
         chatTemplate = json.optString("chatTemplate", null)
     )
 }
-
-// Companion object for ModelData
-val ModelData.Companion: ModelDataCompanion get() = ModelDataCompanion
-object ModelDataCompanion
