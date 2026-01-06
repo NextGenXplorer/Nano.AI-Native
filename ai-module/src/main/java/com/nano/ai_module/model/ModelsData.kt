@@ -193,9 +193,9 @@ fun ModelData.Companion.fromJson(jsonString: String): ModelData {
         mirostatEta = json.optDouble("mirostatEta", 0.1).toFloat(),
         seed = json.optInt("seed", -1),
         isImported = json.optBoolean("isImported", false),
-        modelUrl = json.optString("modelUrl", null),
+        modelUrl = json.optString("modelUrl", "").takeIf { it.isNotEmpty() },
         isToolCalling = json.optBoolean("isToolCalling", false),
         systemPrompt = json.optString("systemPrompt", "You are a helpful assistant."),
-        chatTemplate = json.optString("chatTemplate", null)
+        chatTemplate = json.optString("chatTemplate", "").takeIf { it.isNotEmpty() }
     )
 }
