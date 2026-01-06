@@ -1,0 +1,29 @@
+package com.nano.ai.plugins.db
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.nano.ai.plugins.model.InstalledPlugin
+import com.nano.ai.plugins.model.PluginTypeConverters
+
+
+@Database(entities = [InstalledPlugin::class], version = 1, exportSchema = false)
+@TypeConverters(PluginTypeConverters::class)
+abstract class PluginDataBaseProvider : RoomDatabase() {
+    abstract fun getInstalledPluginDao(): PluginLocalDBDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: PluginDataBaseProvider? = null
+
+        fun getDatabase(context: Context): PluginDataBaseProvider {
+            return INSTANCE ?: synchronized(this) {
+                Room.databaseBuilder(
+                    context.applicationContext, PluginDataBaseProvider::class.java, "local_plugin_db"
+                ).build()
+            }
+        }
+    }
+}
