@@ -33,6 +33,7 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -49,6 +50,7 @@ object ModelManager {
     private var service: IGenerationService? = null
     private var serviceBoundContext: Context? = null
     private val serviceConnection = ServiceConnectionImpl()
+    private var serviceBoundDeferred = CompletableDeferred<Unit>()
 
     // OpenRouter
     private var openRouterExecutor: OpenRouterExecutor? = null
@@ -126,12 +128,28 @@ object ModelManager {
     private class ServiceConnectionImpl : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, binder: IBinder?) {
             service = IGenerationService.Stub.asInterface(binder)
+            if (!serviceBoundDeferred.isCompleted) {
+                serviceBoundDeferred.complete(Unit)
+            }
             Log.i(TAG, "Service connected")
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
             service = null
+            // Reset deferred for reconnection
+            serviceBoundDeferred = CompletableDeferred()
             Log.w(TAG, "Service disconnected")
+        }
+    }
+
+    private suspend fun awaitServiceBound(timeoutMs: Long = 5000L): Boolean {
+        if (service != null) return true
+        return withTimeoutOrNull(timeoutMs) {
+            serviceBoundDeferred.await()
+            true
+        } ?: run {
+            Log.e(TAG, "Service binding timeout after ${timeoutMs}ms")
+            false
         }
     }
 
@@ -177,6 +195,12 @@ object ModelManager {
             return@withContext Result.failure(IllegalArgumentException(err))
         }
 
+        // Wait for service to be bound
+        if (!awaitServiceBound()) {
+            onLoaded(LoadState.Error("Service not bound (timeout)"))
+            return@withContext Result.failure(RuntimeException("Service not bound"))
+        }
+
         val svc = service ?: run {
             onLoaded(LoadState.Error("Service not bound"))
             return@withContext Result.failure(RuntimeException("Service not bound"))
@@ -219,6 +243,12 @@ object ModelManager {
     suspend fun loadVLModels(
         modelData: ModelData, onLoaded: (LoadState) -> Unit
     ) = withContext(Dispatchers.IO) {
+        // Wait for service to be bound
+        if (!awaitServiceBound()) {
+            onLoaded(LoadState.Error("Service not bound (timeout)"))
+            return@withContext
+        }
+
         val svc = service ?: run {
             onLoaded(LoadState.Error("Service not bound"))
             return@withContext
@@ -273,6 +303,12 @@ object ModelManager {
     suspend fun loadEmbeddingModel(
         modelData: ModelData, onLoaded: (LoadState) -> Unit
     ) = withContext(Dispatchers.IO) {
+        // Wait for service to be bound
+        if (!awaitServiceBound()) {
+            onLoaded(LoadState.Error("Service not bound (timeout)"))
+            return@withContext
+        }
+
         val svc = service ?: run {
             onLoaded(LoadState.Error("Service not bound"))
             return@withContext
