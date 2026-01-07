@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="app_logo.jpg" alt="Nano.AI Logo" width="200"/>
+<img src="app_logo.png" alt="Nano.AI Logo" width="200"/>
 
 # 🧠 Nano.AI
 
