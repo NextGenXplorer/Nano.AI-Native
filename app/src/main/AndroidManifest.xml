@@ -41,7 +41,7 @@
 
         <activity
             android:name=".activity.PluginHubActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -50,7 +50,7 @@
 
         <activity
             android:name=".activity.SetupActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -60,7 +60,7 @@
 
         <activity
             android:name=".activity.GgufPickerActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -69,7 +69,7 @@
 
         <activity
             android:name=".activity.UserDataActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -79,7 +79,7 @@
 
         <activity
             android:name=".activity.ModelPropEditorActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -88,7 +88,7 @@
 
         <activity
             android:name=".activity.ModelLoadingActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -98,7 +98,7 @@
 
         <activity
             android:name=".activity.ModelActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -107,7 +107,7 @@
 
         <activity
             android:name=".activity.DatahubActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -116,7 +116,7 @@
 
         <activity
             android:name=".activity.TempActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -125,7 +125,7 @@
 
         <activity
             android:name=".activity.LoggerActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
@@ -134,7 +134,7 @@
 
         <activity
             android:name=".activity.ScrapActivity"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.NanoAI"
             android:windowSoftInputMode="adjustResize">
