@@ -106,37 +106,12 @@ object ModelManager {
     //region Service Management
 
     private fun bindService(context: Context) {
-        try {
-            Log.d(TAG, "Attempting to bind GenerationService...")
-            val intent = Intent(context, GenerationService::class.java)
-            
-            // Try to start the service first (helps with initialization)
-            try {
-                context.startService(intent)
-                Log.d(TAG, "Service start requested")
-            } catch (e: Exception) {
-                Log.w(TAG, "Failed to start service, will try binding anyway", e)
-            }
-            
-            // Small delay to let service initialize
-            Thread.sleep(500)
-            
-            val bound = context.bindService(
-                intent,
-                serviceConnection,
-                Context.BIND_AUTO_CREATE or Context.BIND_IMPORTANT
-            )
-            
-            if (!bound) {
-                Log.e(TAG, "bindService returned false!")
-            } else {
-                Log.d(TAG, "bindService returned true")
-            }
-            
-            serviceBoundContext = context.applicationContext
-        } catch (e: Exception) {
-            Log.e(TAG, "Exception during service binding", e)
-        }
+        context.bindService(
+            Intent(context, GenerationService::class.java),
+            serviceConnection,
+            Context.BIND_AUTO_CREATE
+        )
+        serviceBoundContext = context.applicationContext
     }
 
     private fun unbindService() {
@@ -167,25 +142,13 @@ object ModelManager {
         }
     }
 
-    private suspend fun awaitServiceBound(timeoutMs: Long = 30000L): Boolean {
-        Log.d(TAG, "Waiting for service binding (timeout: ${timeoutMs}ms)...")
-        val startTime = System.currentTimeMillis()
-        
-        if (service != null) {
-            Log.d(TAG, "Service already bound")
-            return true
-        }
-        
+    private suspend fun awaitServiceBound(timeoutMs: Long = 5000L): Boolean {
+        if (service != null) return true
         return withTimeoutOrNull(timeoutMs) {
             serviceBoundDeferred.await()
-            val elapsed = System.currentTimeMillis() - startTime
-            Log.d(TAG, "Service bound successfully after ${elapsed}ms")
             true
         } ?: run {
-            val elapsed = System.currentTimeMillis() - startTime
-            Log.e(TAG, "Service binding timeout after ${elapsed}ms (limit: ${timeoutMs}ms)")
-            Log.e(TAG, "Service state: ${service != null}")
-            Log.e(TAG, "Deferred completed: ${serviceBoundDeferred.isCompleted}")
+            Log.e(TAG, "Service binding timeout after ${timeoutMs}ms")
             false
         }
     }
@@ -236,31 +199,19 @@ object ModelManager {
     private suspend fun loadGGUFModel(
         modelData: ModelData, onLoaded: (LoadState) -> Unit
     ): Result<Unit> = withContext(Dispatchers.IO) {
-        Log.d(TAG, "=== Starting GGUF Model Load ===")
-        Log.d(TAG, "Model: ${modelData.modelName}")
-        Log.d(TAG, "Path: ${modelData.modelPath}")
-        
         onLoaded(LoadState.Idle)
         onLoaded(LoadState.Loading(0f))
 
         val file = File(modelData.modelPath)
-        Log.d(TAG, "Checking file existence...")
         if (!file.exists()) {
-            val err = "Model file not found: ${file.absolutePath}"
-            Log.e(TAG, err)
-            Log.e(TAG, "Parent directory exists: ${file.parentFile?.exists()}")
+            val err = "Model not found: ${file.absolutePath}"
             onLoaded(LoadState.Error(err))
             return@withContext Result.failure(IllegalArgumentException(err))
         }
-        
-        Log.d(TAG, "✓ File exists (${file.length() / 1024 / 1024} MB)")
 
-        // Wait for service to be bound with increased timeout
-        Log.d(TAG, "Waiting for service binding...")
-        if (!awaitServiceBound(timeoutMs = 30000L)) {
-            val err = "Service binding timeout. Please restart the app."
-            Log.e(TAG, err)
-            onLoaded(LoadState.Error(err))
+        // Wait for service to be bound
+        if (!awaitServiceBound()) {
+            onLoaded(LoadState.Error("Service not bound (timeout)"))
             return@withContext Result.failure(RuntimeException("Service not bound"))
         }
 
@@ -689,17 +640,8 @@ object ModelManager {
     }
 
     suspend fun isAnyModelInstalled(): Boolean = withContext(Dispatchers.IO) {
-        return@withContext try {
-            Log.d(TAG, "Checking if any models are installed...")
-            ensureDaoInitialized()
-            val models = dao.getAllModels().firstOrNull() ?: emptyList()
-            val hasModels = models.isNotEmpty()
-            Log.d(TAG, "Found ${models.size} models in database")
-            hasModels
-        } catch (e: Exception) {
-            Log.e(TAG, "Error checking installed models", e)
-            false
-        }
+        ensureDaoInitialized()
+        dao.getAllModels().firstOrNull()?.isNotEmpty() == true
     }
 
     suspend fun getAllModels(): List<ModelData> = withContext(Dispatchers.IO) {
